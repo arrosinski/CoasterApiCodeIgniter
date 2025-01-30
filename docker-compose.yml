@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    image: php:8.0-fpm
+    container_name: coaster_api_app
+    volumes:
+      - .:/var/www/html
+    expose:
+      - "9000"
+    networks:
+      - coaster_api_network
+
+  redis:
+    image: redis:latest
+    container_name: coaster_api_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - coaster_api_network
+
+networks:
+  coaster_api_network:
+    driver: bridge

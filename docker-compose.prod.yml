@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:latest
+    container_name: coaster_api_web_prod
+    volumes:
+      - .:/var/www/html
+      - ./nginx.prod.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks:
+      - coaster_api_network
